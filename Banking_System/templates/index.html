@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}Home{% endblock %}
+
+{% block style %}
+<style>
+    body{
+        background-image:url('https://images.unsplash.com/photo-1563103311-860aee557af8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&q=80');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+
+</style>
+{% endblock %}
+
+{% block body %}
+    
+          <!-- Alert Box -->
+          
+          <div class="  mt-3 alert alert-info" >
+            <h4 class=" text-center alert-heading">Sparks Foundation Internship</h4>
+            <h5 class="text-center">
+                <ul class="list-unstyled">
+                    <li> Name: Shah Hardi M. </li>
+                    <li> BASIC-BANKING-WEBSITE </li>
+                </ul>
+            </h5>
+          </div>
+          <!-- Introdution -->
+          <div class="container-fluid">
+              <h3 class="text-white">Welcome to Banking System </h3>
+              <hr>
+              <p class="text-white">We will help you to transfer the amount from one user to another. </p><br><hr>
+              <p class="text-white">Instant transfer the amount of money which will be credited from one user to another.</p><br><hr><br>
+          </div>
+    
+          <!--Tramsfer Button-->
+            <div class="text-center">
+              <a href="/transfer_credit" class=" mt-3 btn btn-info btn-lg" role="button"> Transfer Amount</a>
+            </div>
+        
+{% endblock %}

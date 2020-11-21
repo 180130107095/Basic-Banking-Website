@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--Title-->
+{% block title %} Transfer Money {% endblock %}
+
+<!--Style -->
+{% block style %}
+    <style>
+        body{
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy969oUa2D2_5ZqePq3Oadv_WrDDzHa9BAHw&usqp=CAU');
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+<!-- Table -->
+    <div class="container my-3">
+        <div class="card card-body text-white bg-dark">
+            <h1 class="text-center">User account list</h1>
+            <p class="text-center" style="font-weight: bold;">Choose the user from the list:</p>
+        </div>
+        <table class="table table-hover table-dark mt-3">
+        <thead class="bg-info">
+            <tr>
+          
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Email - ID</th>
+            <th scope="col">Initial Balance </th>
+            <th scope="col" style="text-align: center;">Click</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr class="">
+                    <td style=font-weight:bold;font-style:italic><a href="/user/{{user.name}}">{{user.name}}</a></td>
+                      <td style=font-weight:bold;font-style:italic>{{user.age}}</td>
+                        <td style=font-weight:bold;font-style:italic>{{user.email}}</td>
+                    <td style=font-weight:bold;font-style:italic>{{user.current_credit}}</td>
+                    <td class="text-center align-middle"><a href="/user/{{user.name}}"> <button type="button" class="btn btn-outline-light btn-sm">Select</button></a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </div>
+  
+{% endblock %}

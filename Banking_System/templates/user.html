@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title -->
+{% block title %} {{user.name}} | Basic Banking Website {% endblock %}
+
+<!--Style-->
+    {% block style %}
+        <style>
+            body{
+                background-image: url('https://cdn.pixabay.com/photo/2017/02/18/01/26/background-2076334_1280.jpg');
+            }
+         
+        </style>
+    {% endblock %}
+
+<!--Body-->
+        {% block body %}
+        <div class="container mt-3">
+        <div class="card text-center border-info mb-3 ">
+            <h5 class="card-header bg-info text-white "><b>Sender Details</b></h5>
+            <div class="card-body text-info">
+              <h5 class="card-title">Your <b>Trust</b> Account </h5>
+              <p class="card-text" style="font-weight: bold;">is a lot more important than bank account.</p>
+              <a href="/transfer_credit" class="btn btn-primary">Go User details</a>
+
+                <!--Table-->
+                <table class="table table-hover table-dark  my-5 mb-5 pb-5">
+                    <thead class="bg-primary">
+                        <tr >
+      
+                            <th  scope="col">Name</th>
+                            <th scope="col">Age</th>
+                              <th scope="col">Email-Id</th>
+                            <th scope="col">Current Balance</th>
+      
+      
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style=font-weight:bold;font-style:italic>{{user.name}}</td>
+                            <td style=font-weight:bold;font-style:italic>{{user.age}}</td>
+                              <td style=font-weight:bold;font-style:italic>{{user.email}}</td>
+                            <td style=font-weight:bold;font-style:italic>{{user.current_credit}}</td>
+      
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--Transfer Money-->
+                    <div class="jumbotron">
+                        <div class="container">
+                            <h4> How Much amount do you want to send?</h4>
+                            <p>We provide you faster transaction service...</p>
+                           
+                            <p>
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                  Transfer Money to Another User.
+                                </button>
+                              </p>
+                              <div class="collapse" id="collapseExample">
+                                    <div class="card card-body bg-dark text-white">
+                                        <form action="/user/{{user.name}}/confirmation" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right">Reciever<span></span>:</label>
+                                                <select required class="form-control col-sm-8" id="recipient" name="recipient">
+                                                    <option selected></option>
+                                                    {% for usr in users %}
+                                                    {% ifnotequal usr.name user.name %}
+                                                    <option>{{usr.name}}</option>
+                                                    {% endifnotequal %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right">Amount of Money<span></span>:</label>
+                                                <input class="col-sm-8" type="number" id="credit" name="credit" required>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                  Are you Sure to continue the transaction?
+                                                </label>
+                                                <br>
+                                               <button type="submit" class="btn btn-primary btn-lg mt-2">Transfer</button>
+
+
+                                        </form>
+                                    </div>
+                             </div>
+                        </div>
+                    </div>
+              
+
+
+            </div>
+          </div>
+        </div>
+        {% endblock %}

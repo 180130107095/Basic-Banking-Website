@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} User_Final_Details {% endblock %}
+<!--Style-->
+{% block style %}
+    <style>
+        body{
+            background-image: url('https://media.istockphoto.com/vectors/horizontal-vector-illustration-of-an-empty-light-blue-grungy-textured-vector-id1133523143?k=6&m=1133523143&s=612x612&w=0&h=m13vZSIhbkYt1qEG87lLcp65IF0l8HeplV8aQ8dP_M8=');
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+        <div class="container mt-3">
+
+            <table class="table table-hover table-dark">
+                
+                <div class="border border-info mb-3">
+                <h1 class="text-center mt-2 font-weight-bold font-italic text-info">User final details</h1>
+                <p class="text-center text-info" style="font-weight: 500; font-style: italic;"> List of User final details after transfer money from one to another user:</p>
+                </div>
+                
+                <thead class="bg-primary">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email-Id</th>
+                    <th scope="col">Final_Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{user.name}}</td>
+                            <td>{{user.age}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.current_credit}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>    
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Money Transferred|Basic Banking Website{% endblock %}
+<!-- Style-->
+{% block Style %}
+    <style>
+        body{
+            background-image: url('https://media.istockphoto.com/vectors/horizontal-vector-illustration-of-an-empty-light-blue-grungy-textured-vector-id1133523143?k=6&m=1133523143&s=612x612&w=0&h=m13vZSIhbkYt1qEG87lLcp65IF0l8HeplV8aQ8dP_M8=');        
+            }
+    </style>
+{% endblock %}
+
+<!--Body-->
+    {% block body %}
+    {% if status %}
+    <div class="alert alert-success alert-dismissible fade show mb-2" role="alert">
+
+        <strong>Success!</strong> Amount of  <strong>{{credit}}</strong> have been sent to <strong> {{recipient}}</strong> from <strong>{{name}}</strong> :)
+    </div>
+    {% else %}
+    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+
+        <strong>Error:</strong> Cannot send {{credit}} money as {{name}} doesn't have sufficient amount to send :(
+    </div>
+        {% endif %}
+        
+        <div class="container">
+            <div class="card card-body mt-5 border border-info">
+                <div class="header"><h1 class="text-center text-primary">Transactions Detail</h1></div>
+            
+            <p class=" card-text text-primary text-center" style="font-weight: 500;">Here the user final details after the transaction!</p>
+            <table class="table table-hover table-dark">
+                <thead class="bg-info">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email-ID</th>
+                    <th scope="col">Amount Credited</th>
+                    <th scope="col">Amount Debited </th>
+                    <th scope="col">Final Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        {% ifequal recipient user.name %}
+
+                            <tr>
+                                <td scope="row">{{user.name}}</td>
+                                <td>{{"Reciever"}}</td>
+                                <td>{{user.age}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{credit}}</td>
+                                <td>{{0}}</td>
+                                <td>{{user.current_credit}}</td>
+                            </tr>
+                        {% endifequal %}    
+                                
+                        {% ifequal name user.name%} 
+                            <tr>
+                                <td scope="row">{{user.name}}</td>
+                                <td>{{"Sender"}}</td>
+                                <td>{{user.age}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{credit}}</td>
+                                <td>{{0}}</td>
+                                <td>{{user.current_credit}}</td>
+                            </tr>   
+                        {% endifequal %}
+                    {% endfor %}        
+                </tbody>
+            </table>                                              
+            <a role="button" class="btn btn-primary btn-lg" href="/user_final">View final Detail</a>
+        </div>
+        </div>
+    {% endblock %}
